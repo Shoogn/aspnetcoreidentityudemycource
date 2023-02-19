@@ -1,0 +1,52 @@
+﻿@model IEnumerable<UdemyCource.Models.PostContent>
+@{
+    ViewData["Title"] = "SecureContent";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-sm-12 event-details">
+        <h2>Post Contents</h2>
+        <h6>
+            <a asp-action="AddPost" asp-controller="Home" class="link-primary">Create Post</a>
+        </h6>
+    </div>
+</div>
+
+<div class="row">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Title</th>
+                <th>Added By</th>
+                <th>Details</th>
+                <th>Added Date</th>
+                <th>#</th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.Title</td>
+                    <td>
+                        @(item.AddedBy == null ? "-" : item.AddedBy)
+
+                    </td>
+                    <td>@item.Details</td>
+                    <td>@item.AddedDate</td>
+
+                    <td>
+                        <form asp-action="DeletePost" asp-controller="Home" method="post"  asp-route-id="@item.Id">
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                        
+
+                    </td>
+                </tr>
+            }
+
+        </thead>
+    </table>
+</div>

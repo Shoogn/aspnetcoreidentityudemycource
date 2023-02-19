@@ -1,0 +1,42 @@
+﻿@model UdemyCource.Models.PostContent
+@{
+    ViewData["Title"] = "AddPost";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row justify-content-md-center" style="margin-top:130px;">
+
+    <div class="col-md-5">
+
+        <div class="card">
+            <h5 class="card-header bg-dark text-white">Add Pots</h5>
+            <div class="card-body">
+
+                <form class="px-4 py-3" asp-action="AddPost" asp-controller="Home" method="post">
+
+                    <div asp-validation-summary="All" class="text-danger"></div>
+
+                    <div class="form-group">
+                        <label for="">Title</label>
+                        <input type="text" class="form-control" asp-for="Title" autocomplete="off">
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="">Details</label>
+                        <div class="input-group">
+                            <textarea class="form-control" asp-for="Details"></textarea>
+                                 
+                        </div>
+                    </div>
+
+
+                    <button type="submit" class="btn btn-primary">Create Post</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+

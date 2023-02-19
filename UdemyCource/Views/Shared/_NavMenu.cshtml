@@ -1,0 +1,73 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<UdemyCource.Models.AppUser> _signInManager
+
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <a class="navbar-brand" href="#"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/" target="_blank">Home</a>
+            </li>
+        </ul>
+
+
+        <ul class="navbar-nav">
+            @if (_signInManager.IsSignedIn(User) && User.IsInRole("Admin") || User.IsInRole("Moderators"))
+            {
+                <li>
+
+                    <form asp-action="SecureContent" asp-controller="Home" method="get">
+                        <button type="submit" class="btn btn-outline-light">
+                            Contetns
+                        </button>
+                    </form>
+                </li>
+                <li>&Iota;</li>
+            }
+
+
+            @if (_signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+            {
+                <li>
+
+                    <form asp-action="Index" asp-controller="ManageUsers" method="get">
+                        <button type="submit" class="btn btn-outline-light">
+                            Manage Users
+                        </button>
+                    </form>
+                </li>
+                <li>&Iota;</li>
+
+
+
+            }
+
+            @if (User.Identity.IsAuthenticated)
+            {
+
+                <li class="nav-item">
+                    <h6 class="text-white">Hello @User.Identity.Name</h6>
+                </li>
+                <li>&Iota;</li>
+                <li>
+                    <form asp-action="Logout" asp-controller="Accounts">
+                        <button type="submit" class="btn btn-outline-light">
+                          Logout
+                        </button>
+                    </form>
+                </li>
+            }
+            else
+            {
+                <li class="nav-item">
+                    <a asp-action="SignInUser" asp-controller="Accounts" class="nav-link">Login </a>
+                </li>
+
+            }
+
+        </ul>
+    </div>
+</nav>

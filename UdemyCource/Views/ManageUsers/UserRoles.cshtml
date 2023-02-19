@@ -1,0 +1,45 @@
+﻿@model UdemyCource.ViewModels.AllUsers
+@{
+    ViewData["Title"] = "UserRoles";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row justify-content-md-center" style="margin-top:130px;">
+
+    <div class="col-md-5">
+
+        <div class="card">
+            <h5 class="card-header bg-dark text-white">User Roles</h5>
+            <div class="card-body">
+
+                <div class="form-group">
+                    <label for="">User Name</label>
+                    <input type="text" disabled class="form-control" asp-for="Name">
+                </div>
+
+                @if (Model.Roles != null && Model.Roles.Any())
+                {
+                    <label for="">Roles</label>
+                    foreach (var role in Model.Roles)
+                    {
+                        <input type="text" disabled class="form-control" value="@role.RoleName">
+                        <form asp-action="DeleteUserFromRole" asp-controller="ManageUsers" method="post" 
+                              asp-route-userId="@Model.Id" asp-route-roleId="@role.Id">
+                            <button type="submit" class="btn btn-danger">Remove User From Role</button>
+                        </form>
+                    }
+                }
+                else
+                {
+                    @: <span>No Role/s Found For this user</span>
+                }
+
+
+                <div class="dropdown-divider"></div>
+
+            </div>
+        </div>
+    </div>
+
+
+</div>

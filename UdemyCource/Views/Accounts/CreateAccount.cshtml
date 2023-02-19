@@ -1,0 +1,59 @@
+﻿@model UdemyCource.ViewModels.RegisterModel
+@{
+    ViewData["Title"] = "CreateAccount";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row justify-content-md-center" style="margin-top:130px;">
+
+    <div class="col-md-5">
+
+        <div class="card">
+            <h5 class="card-header bg-dark text-white">Register</h5>
+            <div class="card-body">
+
+                <form class="px-4 py-3" asp-action="CreateAccount" asp-controller="Accounts" method="post">
+
+                    <div asp-validation-summary="All" class="text-danger"></div>
+
+                    <div class="form-group">
+                        <label for="">Email</label>
+                        <input type="text" class="form-control" asp-for="UserEmail" autocomplete="off">
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="">Age</label>
+                        <input type="text" class="form-control" asp-for="UserAge">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" asp-for="PhoneNumber"
+                                   aria-label="Username" aria-describedby="basic-addon1" id="phone">
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="form-group">
+                        <label for="">Password</label>
+                        <input type="password" class="form-control" asp-for="Password">
+                    </div>
+
+
+                    <button type="submit" class="btn btn-primary">Sign Up</button>
+                </form>
+
+
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="@Url.Action("SignInUser","Accounts")">Already have an account? Sign in</a>
+
+            </div>
+        </div>
+    </div>
+
+
+</div>

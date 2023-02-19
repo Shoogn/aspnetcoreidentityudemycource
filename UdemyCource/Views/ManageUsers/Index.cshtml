@@ -1,0 +1,48 @@
+﻿@model IEnumerable<UdemyCource.ViewModels.AllUsers>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-sm-12 event-details">
+        <h2>Manage Users</h2>
+        <h6>
+            <a asp-action="AddRole" asp-controller="ManageUsers" class="link-primary">Create Role</a> |
+            <a asp-action="AddUsersToRole" asp-controller="ManageUsers" class="link-primary">Add Users To Role</a>
+        </h6>
+    </div>
+</div>
+
+<div class="row">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>User Id</th>
+                <th>User Name</th>
+                <th>User Email</th>
+                <th>#</th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.Name</td>
+                    <td>@item.Email</td>
+               
+                    <td>
+                        <form asp-action="DeleteUser" asp-controller="ManageUsers" method="post" asp-route-userId="@item.Id">
+                            <button type="submit" class="btn btn-danger">Delete User</button>
+                        </form>
+                        |
+                        <a class="btn btn-info" asp-action="UserRoles" asp-controller="ManageUsers" asp-route-userId="@item.Id">User Role</a>
+
+                    </td>
+                </tr>
+            }
+
+        </thead>
+    </table>
+</div>
+
